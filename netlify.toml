@@ -2,9 +2,6 @@
   functions = "functions"
   publish = "frontend/build"
 
-[context.production.environment]
-  NODE_VERSION = "14"
-
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"
