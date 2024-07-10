@@ -16,11 +16,9 @@ if (!jwtSecret) {
   throw new Error("JWT secret not defined. Make sure you have a .env file with JWT_SECRET");
 }
 
-
 app.get('/test', (req, res) => {
   res.json({ message: 'Test endpoint works!' });
 });
-
 
 // Signup route
 app.post('/signup', async (req, res) => {
