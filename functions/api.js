@@ -1,5 +1,5 @@
-require('dotenv').config();
 const express = require('express');
+const serverless = require('serverless-http');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
@@ -43,8 +43,9 @@ app.post('/login', async (req, res) => {
   });
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    const token = jwt.sign({ userId: user.id }, jwtSecret);
-    res.json({ token, user: { email: user.email, name: user.name } });
+    const token = jwt.sign({ userId: user.id }, jwtSecret, { expiresIn: '15m' });
+    const refreshToken = jwt.sign({ userId: user.id }, jwtSecret, { expiresIn: '7d' });
+    res.json({ token, refreshToken, user: { email: user.email, name: user.name } });
   } else {
     res.status(401).json({ error: 'Invalid credentials' });
   }
@@ -53,7 +54,7 @@ app.post('/login', async (req, res) => {
 // Middleware to verify token
 const authenticateToken = (req, res, next) => {
   const token = req.headers['authorization'];
-  if (token == null) return res.sendStatus(401);
+  if (!token) return res.sendStatus(401);
 
   jwt.verify(token, jwtSecret, (err, user) => {
     if (err) return res.sendStatus(403);
@@ -74,6 +75,6 @@ app.get('/user', authenticateToken, async (req, res) => {
   }
 });
 
-app.listen(3001, () => {
-  console.log('Server is running on http://localhost:3001');
-});
+app.use('/.netlify/functions/api', app);
+
+module.exports.handler = serverless(app);
