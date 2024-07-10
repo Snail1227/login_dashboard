@@ -37,7 +37,6 @@ app.post('/signup', async (req, res) => {
 
 // Login route
 app.post('/login', async (req, res) => {
-  console.log('Login route hit');
   const { email, password } = req.body;
   const user = await prisma.user.findUnique({
     where: { email },
@@ -74,11 +73,6 @@ app.get('/user', authenticateToken, async (req, res) => {
   } else {
     res.status(404).json({ error: 'User not found' });
   }
-});
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
 });
 
 app.use('/.netlify/functions/api', app);
