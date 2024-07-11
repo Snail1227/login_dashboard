@@ -3,8 +3,9 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import serverless from 'serverless-http';
 
+const prisma = new PrismaClient();
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -79,4 +80,4 @@ app.get('/user', authenticateToken, async (req, res) => {
 });
 
 // Export the app for serverless handler
-export default app;
+export const handler = serverless(app);

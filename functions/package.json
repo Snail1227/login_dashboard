@@ -1,11 +1,11 @@
 {
   "name": "functions",
   "version": "1.0.0",
-  "main": "api.js",
+  "main": "api.mjs",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon api.js",
+    "start": "nodemon api.mjs",
     "build": "prisma generate"
   },
   "keywords": [],
