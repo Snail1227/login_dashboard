@@ -1,7 +1,8 @@
 {
   "name": "functions",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "api.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon api.js",
@@ -14,9 +15,9 @@
   "dependencies": {
     "@prisma/client": "^5.16.2",
     "bcryptjs": "^2.4.3",
-    "corp": "^1.0.4",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "esm": "^3.2.25",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "prisma": "^5.16.2",

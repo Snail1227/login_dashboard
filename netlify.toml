@@ -1,11 +1,10 @@
 [build]
-  functions = "functions"
+  command = "npm run build"
   publish = "frontend/build"
 
-[context.production.environment]
-  NODE_VERSION = "14"
-  JWT_SECRET = "your_super_secret_jwt_key"
-  DATABASE_URL = "file:./dev.db"
+[functions]
+  directory = "functions"
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/api/*"
