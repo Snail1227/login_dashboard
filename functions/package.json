@@ -1,12 +1,15 @@
 {
   "name": "functions",
   "version": "1.0.0",
-  "main": "api.mjs",
-  "type": "module",
+  "main": "api.js",
+  "engines": {
+    "node": ">=14.x"
+  },
+  "target": "es2022",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon api.mjs",
-    "build": "prisma generate"
+    "build": "netlify build",
+    "dev": "netlify dev"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +23,7 @@
     "esm": "^3.2.25",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
+    "pg": "^8.12.0",
     "prisma": "^5.16.2",
     "serverless-http": "^3.2.0",
     "sqlite3": "^5.1.7"

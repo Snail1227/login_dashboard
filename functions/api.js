@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import serverless from 'serverless-http';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const prisma = new PrismaClient();
 const app = express();
@@ -80,4 +82,4 @@ app.get('/user', authenticateToken, async (req, res) => {
 });
 
 // Export the app for serverless handler
-export const handler = serverless(app);
+export { app };
