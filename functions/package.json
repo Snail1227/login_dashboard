@@ -2,14 +2,12 @@
   "name": "functions",
   "version": "1.0.0",
   "main": "api.js",
-  "engines": {
-    "node": ">=14.x"
-  },
   "target": "es2022",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "netlify build",
-    "dev": "netlify dev"
+    "dev": "netlify dev",
+    "start": "node api.js"
   },
   "keywords": [],
   "author": "",
